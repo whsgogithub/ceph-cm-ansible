@@ -17,11 +17,6 @@
     group: root
     mode: 0755
 
-# upload custom disk monitoring scripts
-- include: disk_monitoring.yml
-  tags:
-    - monitoring-scripts
-
 # configure ssh
 - include: ssh.yml
   tags:
@@ -54,6 +49,16 @@
 # configure debian specific things
 - include: setup-debian.yml
   when: ansible_distribution == "Debian"
+
+# upload custom disk monitoring scripts
+- include: disk_monitoring.yml
+  tags:
+    - monitoring-scripts
+
+# configure nagios
+- include: nagios.yml
+  tags:
+    - nagios
 
 # configure ntp
 - include: ntp.yml
