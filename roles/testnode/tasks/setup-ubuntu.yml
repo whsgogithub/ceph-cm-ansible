@@ -61,37 +61,37 @@
 #    - start ttyS2
 #  when: ansible_hostname | search("^mira*")
 
-- name: Enable kernel modules to load at boot time.
-  template:
-    src: modules
-    dest: /etc/modules
-    owner: root
-    group: root
-    mode: 0644
+#- name: Enable kernel modules to load at boot time.
+#  template:
+#    src: modules
+#    dest: /etc/modules
+#    owner: root
+#    group: root
+#    mode: 0644
 
-- name: Enabling auto-fsck fix to prevent boot hangup.
-  lineinfile:
-    dest: /etc/default/rcS
-    line: "FSCKFIX=yes"
-    regexp: "FSCKFIX=no"
-    # backrefs makes it so that if the regexp
-    # isn't found the file is left unchanged
-    backrefs: yes
-    state: present
+#- name: Enabling auto-fsck fix to prevent boot hangup.
+#  lineinfile:
+#    dest: /etc/default/rcS
+#    line: "FSCKFIX=yes"
+#    regexp: "FSCKFIX=no"
+#    # backrefs makes it so that if the regexp
+#    # isn't found the file is left unchanged
+#    backrefs: yes
+#    state: present
 
-- include: nfs.yml
-  tags:
-    - nfs
+#- include: nfs.yml
+#  tags:
+#    - nfs
 
 # this script was ported directly from chef.
-- name: Set up static IP and 10gig interface.
-  script: scripts/static-ip.sh creates=/static-ip-setup
-  when: "'vps' not in group_names"
+#- name: Set up static IP and 10gig interface.
+#  script: scripts/static-ip.sh creates=/static-ip-setup
+#  when: "'vps' not in group_names"
 
-- name: Edit lvm.conf to support LVM on RBD.
-  lineinfile:
-    dest: /etc/lvm/lvm.conf
-    regexp: "# types ="
-    line: 'types = [ "rbd", 1024 ]'
-    backrefs: yes
-    state: present
+#- name: Edit lvm.conf to support LVM on RBD.
+#  lineinfile:
+#    dest: /etc/lvm/lvm.conf
+#    regexp: "# types ="
+#    line: 'types = [ "rbd", 1024 ]'
+#    backrefs: yes
+#    state: present
