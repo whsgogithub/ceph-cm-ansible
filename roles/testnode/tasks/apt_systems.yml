@@ -7,20 +7,20 @@
   tags:
     - repos
 
-- name: Update apt cache.
-  apt:
-    update_cache: yes
+#- name: Update apt cache.
+#  apt:
+#    update_cache: yes
   # try for 2 minutes before failing
-  retries: 24
-  delay: 5
-  tags:
-    - repos
-    - packages
+#  retries: 24
+#  delay: 5
+#  tags:
+#    - repos
+#    - packages
 
-- name: Perform package related tasks.
-  include: apt/packages.yml
-  tags:
-    - packages
+#- name: Perform package related tasks.
+#  include: apt/packages.yml
+#  tags:
+#    - packages
 
 # This was ported directly from chef.  I was unable to figure out a better way
 # to do this, but it seems to just be adding the user_xattr option to the root filesystem mount.
